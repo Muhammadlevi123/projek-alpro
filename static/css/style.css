@@ -1,0 +1,146 @@
+/* Reset dasar */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #1A1A2E;
+    color: #FFFFFF;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #2E4EA3, #1A1A2E);
+    color: #FFFFFF;
+    height: 100vh;
+    position: fixed;
+    padding: 20px 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar .logo {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #00FFB2; /* Hijau Neon */
+    letter-spacing: 1.5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background: #00FFB2;
+    color: #1A1A2E;
+    font-weight: bold;
+}
+
+.sidebar-footer {
+    font-size: 0.9em;
+    text-align: center;
+    color: #D1D1E9;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 150px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: linear-gradient(135deg, #1A1A2E, #162447);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #00FFB2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.main-content p {
+    font-size: 1.3em;
+    color: #D1D1E9;
+    line-height: 1.6em;
+    margin-bottom: 30px;
+}
+
+/* Daftar anggota tim */
+.team-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    background: #2E4EA3;
+    padding: 12px 20px;
+    border-radius: 8px;
+    width: 500px;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2em;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.team-member i {
+    margin-right: 10px;
+    font-size: 1.5em;
+}
+
+
+/* Button untuk efek tambahan */
+.main-content .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #1A1A2E;
+    background: #00FFB2;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.main-content .btn:hover {
+    background: #2E4EA3;
+    color: #FFFFFF;
+}
