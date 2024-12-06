@@ -1,0 +1,12 @@
+[
+    {
+        "nama_barang": "iphone",
+        "harga": 500000,
+        "jumlah": 2
+    },
+    {
+        "nama_barang": "dompet",
+        "harga": 200000,
+        "jumlah": 3
+    }
+]

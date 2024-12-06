@@ -3,7 +3,7 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
+    height: 100vh;
     background-color: #1A1A2E;
     color: #FFFFFF;
 }
@@ -19,7 +19,6 @@ body {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    
 }
 
 .sidebar .logo {
@@ -72,11 +71,10 @@ body {
 
 /* Main content */
 .main-content {
-    margin-left: 150px;
-    flex: 1;
+    margin-left: 150px; /* Adjusted to accommodate sidebar */
+
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     height: 100vh;
     text-align: center;
     background: linear-gradient(135deg, #1A1A2E, #162447);
@@ -99,12 +97,80 @@ body {
     margin-bottom: 30px;
 }
 
+/* Form Input Kasir */
+#kasirForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Untuk menengahkan tombol secara horizontal */
+    gap: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+    background-color: #2E4EA3;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+form input {
+    padding: 10px;
+    font-size: 1em;
+    width: 300px;
+}
+
+form button {
+    width: 20%;
+    height: 50px;
+    background-color: #45f6c1;
+    color: #1A1A2E;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+
+/* Tabel Daftar Kasir */
+table {
+    width: 600px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #2E4EA3;
+    color: #FFFFFF;
+}
+
+table tr {
+    background-color: #FFFFFF;
+    color: #1A1A2E;
+}
+
+button {
+    padding: 6px 12px;
+    background-color: #FF5C5C;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00FFB2;
+}
+
 /* Daftar anggota tim */
 .team-list {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    
 }
 
 .team-member {
@@ -125,7 +191,6 @@ body {
     font-size: 1.5em;
 }
 
-
 /* Button untuk efek tambahan */
 .main-content .btn {
     display: inline-block;
@@ -143,4 +208,35 @@ body {
 .main-content .btn:hover {
     background: #2E4EA3;
     color: #FFFFFF;
+}
+
+/* Styling untuk container informasi di atas halaman kasir */
+.info-container {
+    background-color: #2E4EA3; /* Biru */
+    margin-left: 200px;
+    margin-right: 100px;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.info-container h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.info-container p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Tambahkan sedikit margin untuk form dan tabel */
+.container {
+    margin-top: 20px;
+}
+
+#nama_barang {
+    margin-right: 50px;
 }
