@@ -33,9 +33,9 @@
         <h2>Informasi Kasir</h2>
         <p>
           Halaman kasir ini digunakan untuk mengelola data barang yang ada di
-          toko. Anda dapat menambahkan barang, menghapus, atau mengupdate
-          data barang yang sudah ada. Gunakan form di bawah untuk menambah
-          barang baru, dan tabel akan menampilkan daftar barang yang tersedia.
+          toko. Anda dapat menambahkan barang, menghapus, atau mengupdate data
+          barang yang sudah ada. Gunakan form di bawah untuk menambah barang
+          baru, dan tabel akan menampilkan daftar barang yang tersedia.
         </p>
       </div>
 
@@ -46,42 +46,54 @@
         <!-- Form untuk Input Data Kasir -->
         <form id="kasirForm" action="/kasir/add" method="POST">
           <div>
-            <label for="nama_barang" style="padding: 10px;">Nama Barang</label>
+            <label for="nama_barang" style="padding: 10px">Nama Barang</label>
             <input type="text" id="nama_barang" name="nama_barang" required />
           </div>
           <div>
-            <label for="harga" style="padding: 13px;">Harga</label>
+            <label for="harga" style="padding: 13px">Harga</label>
             <input type="number" id="harga" name="harga" required />
           </div>
           <div>
-            <label for="jumlah" style="padding: 10px;">Jumlah</label>
+            <label for="jumlah" style="padding: 10px">Jumlah</label>
             <input type="number" id="jumlah" name="jumlah" required />
           </div>
           <button type="submit">Tambah</button>
         </form>
 
         <!-- Modal untuk Update -->
-<div id="updateModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <h2>Update Barang</h2>
-      <form id="updateForm" method="POST">
-        <div>
-          <label for="update_nama_barang" style="padding: 10px;">Nama Barang</label>
-          <input type="text" id="update_nama_barang" name="nama_barang" required />
+        <div id="updateModal" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Update Barang</h2>
+            <form id="updateForm" method="POST">
+              <div>
+                <label for="update_nama_barang" style="padding: 10px"
+                  >Nama Barang</label
+                >
+                <input
+                  type="text"
+                  id="update_nama_barang"
+                  name="nama_barang"
+                  required
+                />
+              </div>
+              <div>
+                <label for="update_harga" style="padding: 10px">Harga</label>
+                <input type="number" id="update_harga" name="harga" required />
+              </div>
+              <div>
+                <label for="update_jumlah" style="padding: 10px">Jumlah</label>
+                <input
+                  type="number"
+                  id="update_jumlah"
+                  name="jumlah"
+                  required
+                />
+              </div>
+              <button type="submit">Simpan Perubahan</button>
+            </form>
+          </div>
         </div>
-        <div>
-          <label for="update_harga" style="padding: 10px;">Harga</label>
-          <input type="number" id="update_harga" name="harga" required />
-        </div>
-        <div>
-          <label for="update_jumlah" style="padding: 10px;">Jumlah</label>
-          <input type="number" id="update_jumlah" name="jumlah" required />
-        </div>
-        <button type="submit">Simpan Perubahan</button>
-      </form>
-    </div>
-  </div>
 
         <!-- Tabel untuk Menampilkan Data Kasir -->
         <h2>Daftar Barang</h2>
@@ -106,22 +118,25 @@
               <td>{{ item.jumlah }}</td>
               <td>{{ item.harga * item.jumlah }}</td>
               <td>
-                <form action="/kasir/update/{{ loop.index - 1 }}" method="POST" class="scoped-form">
-                    <a
-                      type="button" 
-                      class="update-btn" 
-                      onclick="openUpdateModal('{{ loop.index - 1 }}', '{{ item.nama_barang }}', '{{ item.harga }}', '{{ item.jumlah }}')"
-                      style="all: unset; color: blue; cursor: pointer;"
-                    >
-                      Update
-                    </a>
-                  </form>
-                  
+                <form
+                  action="/kasir/update/{{ loop.index - 1 }}"
+                  method="POST"
+                  class="scoped-form"
+                >
+                  <a
+                    type="button"
+                    class="update-btn"
+                    onclick="openUpdateModal('{{ loop.index - 1 }}', '{{ item.nama_barang }}', '{{ item.harga }}', '{{ item.jumlah }}')"
+                    style="all: unset; color: blue; cursor: pointer"
+                  >
+                    Update
+                  </a>
+                </form>
               </td>
-              
+
               <td>
                 <!-- Tombol untuk aksi seperti update, delete, dll -->
-                <a href="/kasir/delete/{{ loop.index - 1 }}" class="delete-btn" 
+                <a href="/kasir/delete/{{ loop.index - 1 }}" class="delete-btn"
                   >Delete</a
                 >
               </td>
@@ -146,79 +161,78 @@
         padding: 20px;
         box-sizing: border-box;
       }
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
 
-.modal-content {
-  background-color: #1A1A2E;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
-  border-radius: 8px;
-}
+      .modal-content {
+        background-color: #1a1a2e;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+        border-radius: 8px;
+      }
 
-.close-btn {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
+      .close-btn {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
 
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-#updateForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;    /* Untuk menengahkan tombol secara horizontal */
-    gap: 15px;
-    margin-bottom: 30px;
-    text-align: center;
-    background-color: #28428b;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-}
+      .close-btn:hover,
+      .close-btn:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      #updateForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Untuk menengahkan tombol secara horizontal */
+        gap: 15px;
+        margin-bottom: 30px;
+        text-align: center;
+        background-color: #28428b;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      }
 
-#update_nama_barang{
-    margin-right: 50px;
-}
-#update_harga{
-    margin-left: 5px;
-}
-</style>
-<script>
-    function openUpdateModal(index, nama_barang, harga, jumlah) {
-      // Set nilai input dengan data barang
-      document.getElementById("update_nama_barang").value = nama_barang;
-      document.getElementById("update_harga").value = harga;
-      document.getElementById("update_jumlah").value = jumlah;
-  
-      // Atur action form untuk mengarah ke URL update
-      document.getElementById("updateForm").action = `/kasir/update/${index}`;
-  
-      // Tampilkan modal
-      document.getElementById("updateModal").style.display = "block";
-    }
-  
-    function closeModal() {
-      document.getElementById("updateModal").style.display = "none";
-    }
-  </script>
-  
+      #update_nama_barang {
+        margin-right: 50px;
+      }
+      #update_harga {
+        margin-left: 5px;
+      }
+    </style>
+    <script>
+      function openUpdateModal(index, nama_barang, harga, jumlah) {
+        // Set nilai input dengan data barang
+        document.getElementById("update_nama_barang").value = nama_barang;
+        document.getElementById("update_harga").value = harga;
+        document.getElementById("update_jumlah").value = jumlah;
+
+        // Atur action form untuk mengarah ke URL update
+        document.getElementById("updateForm").action = `/kasir/update/${index}`;
+
+        // Tampilkan modal
+        document.getElementById("updateModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("updateModal").style.display = "none";
+      }
+    </script>
   </body>
 </html>
