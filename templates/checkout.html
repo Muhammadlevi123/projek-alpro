@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout - Kelompok Lepi</title>
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
   <body>
@@ -42,19 +42,23 @@
 
       <!-- Tombol Aksi -->
       <div class="action-buttons">
-        <form action="/" method="GET" style="display: inline-block;">
-          <button class="back-btn">Kembali</button>
+        <form action="/pembelian" method="GET" style="display: inline-block;">
+          <button class="back-btn">
+            <i class="fas fa-arrow-left"></i> Kembali
+          </button>
         </form>
         <form action="/checkout/confirm" method="POST" style="display: inline-block;">
-          <button type="submit" class="confirm-btn">Konfirmasi Pembelian</button>
+          <button type="submit" class="confirm-btn">
+            <i class="fas fa-check-circle"></i> Konfirmasi Pembelian
+          </button>
         </form>
       </div>
     </div>
 
     <style>
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f9;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #6b63ff, #32b9c8);
         margin: 0;
         padding: 0;
         display: flex;
@@ -65,55 +69,101 @@
 
       .main-content {
         background: white;
-        width: 60%;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 50%;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: #28428b;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+
+      .checkout-container {
+        margin: 20px 0;
       }
 
       .checkout-table {
         width: 100%;
         border-collapse: collapse;
         margin: 20px 0;
+        overflow: hidden;
+        border-radius: 10px;
       }
 
       .checkout-table th,
       .checkout-table td {
-        border: 1px solid #ddd;
-        padding: 10px;
+        padding: 15px;
         text-align: center;
+        font-size: 1rem;
       }
 
       .checkout-table th {
         background-color: #28428b;
         color: white;
+        text-transform: uppercase;
+      }
+
+      .checkout-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .checkout-table tr:nth-child(odd) {
+        background-color: #f1f1f1;
+      }
+
+      .checkout-table tr:hover {
+        background-color: #d6f0ff;
+        transition: 0.3s;
       }
 
       .total-section {
         margin-top: 20px;
-        font-size: 18px;
+        font-size: 1.5rem;
         font-weight: bold;
+        color: #28428b;
       }
 
       .action-buttons button {
-        background-color: #28428b;
+        background: linear-gradient(135deg, #28428b, #6b63ff);
         color: white;
         border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
+        padding: 10px 25px;
+        border-radius: 25px;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 1rem;
         margin: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
       }
 
       .action-buttons .back-btn {
-        background-color: #bbb;
+        background: linear-gradient(135deg, #bbbbbb, #dddddd);
       }
 
       .action-buttons button:hover {
-        opacity: 0.8;
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     </style>
-  </body>
+  </body>
 </html>

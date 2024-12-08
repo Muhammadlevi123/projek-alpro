@@ -3,13 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kasir - Kelompok Lepi</title>
-    <link rel="stylesheet" href="/static/css/style.css" />
-    <script src="/static/js/script.js" defer></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+    <title>Kasir</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div class="sidebar">
@@ -22,82 +18,37 @@
           <a href="/kasir"><i class="fas fa-cash-register"></i> Kasir</a>
         </li>
         <li>
-          <a href="/pembelian" class="active"><i class="fas fa-shopping-cart"></i> Pembelian</a>
+          <a href="/pembelian"><i class="fas fa-shopping-cart"></i> Pembelian</a>
         </li>
-        <!-- Add more menu items here -->
+        <li>
+          <a href="/chart"><i class="fas fa-shopping-cart"></i> Chart</a>
+        </li>
       </ul>
     </div>
 
     <div class="main-content">
-      <!-- Container Penjelasan Kasir -->
+      <!-- Informasi Kasir -->
       <div class="info-container">
         <h2>Informasi Kasir</h2>
         <p>
-          Halaman kasir ini digunakan untuk mengelola data barang yang ada di
-          toko. Anda dapat menambahkan barang, menghapus, atau mengupdate data
-          barang yang sudah ada. Gunakan form di bawah untuk menambah barang
-          baru, dan tabel akan menampilkan daftar barang yang tersedia.
+          Halaman kasir ini digunakan untuk mengelola data barang yang ada di toko. Anda dapat menambahkan barang, menghapus, atau mengupdate data barang yang sudah ada.
         </p>
       </div>
 
-      <!-- Form dan Tabel Kasir -->
-      <div class="container">
-        <h1>Kasir</h1>
-
-        <!-- Form untuk Input Data Kasir -->
+      <!-- Form Input Barang -->
+      <div class="form-container">
+        <h3>Tambah Barang</h3>
         <form id="kasirForm" action="/kasir/add" method="POST">
-          <div>
-            <label for="nama_barang" style="padding: 10px">Nama Barang</label>
-            <input type="text" id="nama_barang" name="nama_barang" required />
-          </div>
-          <div>
-            <label for="harga" style="padding: 13px">Harga</label>
-            <input type="number" id="harga" name="harga" required />
-          </div>
-          <div>
-            <label for="jumlah" style="padding: 10px">Jumlah</label>
-            <input type="number" id="jumlah" name="jumlah" required />
-          </div>
+          <input type="text" id="nama_barang" name="nama_barang" placeholder="Nama Barang" required />
+          <input type="number" id="harga" name="harga" placeholder="Harga" required />
+          <input type="number" id="jumlah" name="jumlah" placeholder="Jumlah" required />
           <button type="submit">Tambah</button>
         </form>
+      </div>
 
-        <!-- Modal untuk Update -->
-        <div id="updateModal" class="modal">
-          <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Update Barang</h2>
-            <form id="updateForm" method="POST">
-              <div>
-                <label for="update_nama_barang" style="padding: 10px"
-                  >Nama Barang</label
-                >
-                <input
-                  type="text"
-                  id="update_nama_barang"
-                  name="nama_barang"
-                  required
-                />
-              </div>
-              <div>
-                <label for="update_harga" style="padding: 10px">Harga</label>
-                <input type="number" id="update_harga" name="harga" required />
-              </div>
-              <div>
-                <label for="update_jumlah" style="padding: 10px">Jumlah</label>
-                <input
-                  type="number"
-                  id="update_jumlah"
-                  name="jumlah"
-                  required
-                />
-              </div>
-              <button type="submit">Simpan Perubahan</button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Tabel untuk Menampilkan Data Kasir -->
-        <h2>Daftar Barang</h2>
+      <!-- Tabel Daftar Barang -->
+      <div class="table-container">
+        <h3>Daftar Barang</h3>
         <table id="kasirTable">
           <thead>
             <tr>
@@ -106,8 +57,7 @@
               <th>Harga</th>
               <th>Jumlah</th>
               <th>Total Harga</th>
-              <th>Update</th>
-              <th>Delete</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -119,27 +69,8 @@
               <td>{{ item.jumlah }}</td>
               <td>{{ item.harga * item.jumlah }}</td>
               <td>
-                <form
-                  action="/kasir/update/{{ loop.index - 1 }}"
-                  method="POST"
-                  class="scoped-form"
-                >
-                  <a
-                    type="button"
-                    class="update-btn"
-                    onclick="openUpdateModal('{{ loop.index - 1 }}', '{{ item.nama_barang }}', '{{ item.harga }}', '{{ item.jumlah }}')"
-                    style="all: unset; color: blue; cursor: pointer"
-                  >
-                    Update
-                  </a>
-                </form>
-              </td>
-
-              <td>
-                <!-- Tombol untuk aksi seperti update, delete, dll -->
-                <a href="/kasir/delete/{{ loop.index - 1 }}" class="delete-btn"
-                  >Delete</a
-                >
+                <button class="action-btn update" onclick="openUpdateModal('{{ loop.index - 1 }}', '{{ item.nama_barang }}', '{{ item.harga }}', '{{ item.jumlah }}')">Update</button>
+                <a href="/kasir/delete/{{ loop.index - 1 }}" class="action-btn delete">Delete</a>
               </td>
             </tr>
             {% endfor %}
@@ -147,88 +78,194 @@
         </table>
       </div>
     </div>
-    <style>
-      /* Main content */
-      .main-content {
-        margin-left: 150px; /* Adjusted to accommodate sidebar */
 
+    <!-- Modal Update Barang -->
+    <div id="updateModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Update Barang</h2>
+        <form id="updateForm" method="POST">
+          <input type="text" id="update_nama_barang" name="nama_barang" placeholder="Nama Barang" required />
+          <input type="number" id="update_harga" name="harga" placeholder="Harga" required />
+          <input type="number" id="update_jumlah" name="jumlah" placeholder="Jumlah" required />
+          <button type="submit">Simpan</button>
+        </form>
+      </div>
+    </div>
+
+    <style>
+      /* General Styles */
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        display: flex;
+      }
+
+      .sidebar {
+        width: 250px;
+        background: linear-gradient(135deg, #28428b, #6b63ff);
+        height: 100vh;
+        color: white;
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
         align-items: center;
-        height: 130vh;
-        text-align: center;
-        background: linear-gradient(135deg, #1a1a2e, #162447);
-        padding: 20px;
-        box-sizing: border-box;
+        padding-top: 20px;
       }
+
+      .sidebar .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .sidebar ul li {
+        margin: 15px 0;
+      }
+
+      .sidebar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .sidebar ul li a:hover {
+        color: #ffd700;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 30px;
+        background: #f4f4f9;
+      }
+
+      h2, h3 {
+        color: #28428b;
+      }
+
+      /* Form Styles */
+      .form-container {
+        margin: 20px 0;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container form {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .form-container form input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .form-container form button {
+        background: #6b63ff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* Table Styles */
+      .table-container {
+        margin-top: 20px;
+      }
+
+      #kasirTable {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      #kasirTable th, #kasirTable td {
+        padding: 10px;
+        text-align: center;
+      }
+
+      #kasirTable th {
+        background: #28428b;
+        color: white;
+      }
+
+      #kasirTable tbody tr:nth-child(odd) {
+        background: #f9f9f9;
+      }
+
+      #kasirTable tbody tr:nth-child(even) {
+        background: #ececec;
+      }
+
+      /* Modal Styles */
       .modal {
         display: none;
         position: fixed;
-        z-index: 1;
-        left: 0;
         top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
       }
 
       .modal-content {
-        background-color: #1a1a2e;
-        margin: 15% auto;
+        background: white;
         padding: 20px;
-        border: 1px solid #888;
-        width: 50%;
         border-radius: 8px;
+        width: 400px;
+        text-align: center;
       }
 
       .close-btn {
-        color: #aaa;
         float: right;
-        font-size: 28px;
-        font-weight: bold;
         cursor: pointer;
+        font-size: 1.5rem;
+        color: #6b63ff;
       }
 
-      .close-btn:hover,
-      .close-btn:focus {
-        color: black;
+      .close-btn:hover {
+        color: #ff6f61;
+      }
+
+      /* Button Styles */
+      .action-btn {
+        padding: 5px 10px;
+        border-radius: 4px;
         text-decoration: none;
         cursor: pointer;
       }
-      #updateForm {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Untuk menengahkan tombol secara horizontal */
-        gap: 15px;
-        margin-bottom: 30px;
-        text-align: center;
-        background-color: #28428b;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+
+      .action-btn.update {
+        background: #6b63ff;
+        color: white;
       }
 
-      #update_nama_barang {
-        margin-right: 50px;
-      }
-      #update_harga {
-        margin-left: 5px;
+      .action-btn.delete {
+        background: #ff6f61;
+        color: white;
       }
     </style>
     <script>
       function openUpdateModal(index, nama_barang, harga, jumlah) {
-        // Set nilai input dengan data barang
         document.getElementById("update_nama_barang").value = nama_barang;
         document.getElementById("update_harga").value = harga;
         document.getElementById("update_jumlah").value = jumlah;
-
-        // Atur action form untuk mengarah ke URL update
         document.getElementById("updateForm").action = `/kasir/update/${index}`;
-
-        // Tampilkan modal
-        document.getElementById("updateModal").style.display = "block";
+        document.getElementById("updateModal").style.display = "flex";
       }
 
       function closeModal() {

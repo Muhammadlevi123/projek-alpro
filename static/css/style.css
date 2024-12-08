@@ -1,242 +1,163 @@
-/* Reset dasar */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin: 0;
-    padding: 0;
-    height: 100vh;
-    background-color: #1A1A2E;
-    color: #FFFFFF;
-}
+    display: flex;
+  }
 
-/* Sidebar */
-.sidebar {
-    width: 260px;
-    background: linear-gradient(180deg, #2E4EA3, #1A1A2E);
-    color: #FFFFFF;
+  .sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #28428b, #6b63ff);
     height: 100vh;
-    position: fixed;
-    padding: 20px 15px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    color: white;
     display: flex;
     flex-direction: column;
-}
+    align-items: center;
+    padding-top: 20px;
+  }
 
-.sidebar .logo {
-    font-size: 2em;
+  .sidebar .logo {
+    font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 30px;
-    text-align: center;
-    color: #00FFB2; /* Hijau Neon */
-    letter-spacing: 1.5px;
-}
+  }
 
-.sidebar ul {
+  .sidebar ul {
     list-style: none;
     padding: 0;
-}
+  }
 
-.sidebar ul li {
+  .sidebar ul li {
     margin: 15px 0;
-}
+  }
 
-.sidebar ul li a {
-    color: #FFFFFF;
+  .sidebar ul li a {
+    color: white;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1rem;
     display: flex;
     align-items: center;
-    padding: 12px 15px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
+    gap: 10px;
+  }
 
-.sidebar ul li a i {
-    margin-right: 10px;
-    font-size: 1.3em;
-}
+  .sidebar ul li a:hover {
+    color: #ffd700;
+  }
 
-.sidebar ul li a:hover,
-.sidebar ul li a.active {
-    background: #00FFB2;
-    color: #1A1A2E;
-    font-weight: bold;
-}
+  .main-content {
+    flex: 1;
+    padding: 30px;
+    background: #f4f4f9;
+  }
 
-.sidebar-footer {
-    font-size: 0.9em;
-    text-align: center;
-    color: #D1D1E9;
-}
+  h2, h3 {
+    color: #28428b;
+  }
 
-/* Main content */
-.main-content {
-    margin-left: 150px; /* Adjusted to accommodate sidebar */
-
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    text-align: center;
-    background: linear-gradient(135deg, #1A1A2E, #162447);
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.main-content h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: #00FFB2;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.main-content p {
-    font-size: 1.3em;
-    color: #D1D1E9;
-    line-height: 1.6em;
-    margin-bottom: 30px;
-}
-
-/* Form Input Kasir */
-#kasirForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;    /* Untuk menengahkan tombol secara horizontal */
-    gap: 15px;
-    margin-bottom: 30px;
-    text-align: center;
-    background-color: #2E4EA3;
+  /* Form Styles */
+  .form-container {
+    margin: 20px 0;
+    background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-}
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-form input {
+  .form-container form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .form-container form input {
+    flex: 1;
     padding: 10px;
-    font-size: 1em;
-    width: 300px;
-}
-
-form button {
-    width: 20%;
-    height: 50px;
-    background-color: #45f6c1;
-    color: #1A1A2E;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-
-/* Tabel Daftar Kasir */
-table {
-    width: 600px;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th, table td {
-    padding: 12px;
-    text-align: center;
     border: 1px solid #ddd;
-}
+    border-radius: 4px;
+  }
 
-table th {
-    background-color: #2E4EA3;
-    color: #FFFFFF;
-}
-
-table tr {
-    background-color: #FFFFFF;
-    color: #1A1A2E;
-}
-
-button {
-    padding: 6px 12px;
-    background-color: #FF5C5C;
+  .form-container form button {
+    background: #6b63ff;
+    color: white;
     border: none;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #00FFB2;
-}
-
-/* Daftar anggota tim */
-.team-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    
-}
-
-.team-member {
-    display: flex;
-    align-items: center;
-    background: #2E4EA3;
-    padding: 12px 20px;
-    border-radius: 8px;
-    width: 500px;
-    justify-content: center;
-    color: #fff;
-    font-size: 1.2em;
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.team-member i {
-    margin-right: 10px;
-    font-size: 1.5em;
-}
-
-/* Button untuk efek tambahan */
-.main-content .btn {
-    display: inline-block;
-    margin-top: 20px;
     padding: 10px 20px;
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #1A1A2E;
-    background: #00FFB2;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
-.main-content .btn:hover {
-    background: #2E4EA3;
-    color: #FFFFFF;
-}
-
-/* Styling untuk container informasi di atas halaman kasir */
-.info-container {
-    background-color: #2E4EA3; /* Biru */
-    margin-left: 200px;
-    margin-right: 100px;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.info-container h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
-.info-container p {
-    font-size: 1.2em;
-    line-height: 1.6;
-}
-
-/* Tambahkan sedikit margin untuk form dan tabel */
-.container {
+  /* Table Styles */
+  .table-container {
     margin-top: 20px;
-}
+  }
 
-#nama_barang {
-    margin-right: 50px;
-}
+  #kasirTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #kasirTable th, #kasirTable td {
+    padding: 10px;
+    text-align: center;
+  }
+
+  #kasirTable th {
+    background: #28428b;
+    color: white;
+  }
+
+  #kasirTable tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+  }
+
+  #kasirTable tbody tr:nth-child(even) {
+    background: #ececec;
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+  }
+
+  .close-btn {
+    float: right;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #6b63ff;
+  }
+
+  .close-btn:hover {
+    color: #ff6f61;
+  }
+
+  /* Button Styles */
+  .action-btn {
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .action-btn.update {
+    background: #6b63ff;
+    color: white;
+  }
+
+  .action-btn.delete {
+    background: #ff6f61;
+    color: white;
+  }

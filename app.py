@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import json
 import os
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 # Nama file untuk menyimpan data kasir
 DATA_FILE = 'kasir_data.json'
@@ -122,5 +122,5 @@ def pembelian():
 
     return render_template('pembelian.html', data=data)
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)

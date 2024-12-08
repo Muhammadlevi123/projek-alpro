@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <title>Chart</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">Kelompok Lepi</div>
+        <ul>
+          <li>
+            <a href="/"><i class="fas fa-home"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="/kasir"><i class="fas fa-cash-register"></i> Kasir</a>
+          </li>
+          <li>
+            <a href="/pembelian"><i class="fas fa-shopping-cart"></i> Pembelian</a>
+          </li>
+          <li>
+            <a href="/chart"><i class="fas fa-shopping-cart"></i> Chart</a>
+          </li>
+        </ul>
+      </div>
+    <h1>Chart</h1>
+    {% if chart %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Barang</th>
+                <th>Harga</th>
+                <th>Jumlah</th>
+                <th>Total Harga</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in chart %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ item.nama_barang }}</td>
+                <td>{{ item.harga }}</td>
+                <td>{{ item.jumlah }}</td>
+                <td>{{ item.harga * item.jumlah }}</td>
+                <td>
+                    <a href="/chart/delete/{{ loop.index - 1 }}">Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total Harga: {{ total_price }}</h3>
+    <form action="/checkout" method="POST">
+        <button type="submit">Checkout</button>
+    </form>
+    {% else %}
+    <p>Chart Anda kosong!</p>
+    {% endif %}
+</body>
+</html>
