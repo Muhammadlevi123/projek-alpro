@@ -1,0 +1,22 @@
+[
+    {
+        "nama_barang": "hamas",
+        "harga": 2000000,
+        "jumlah": 5
+    },
+    {
+        "nama_barang": "ipul",
+        "harga": 10,
+        "jumlah": 20
+    },
+    {
+        "nama_barang": "fatan",
+        "harga": 1,
+        "jumlah": 5
+    },
+    {
+        "nama_barang": "lepi",
+        "harga": 100000000,
+        "jumlah": 5
+    }
+]

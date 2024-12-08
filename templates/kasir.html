@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kasir</title>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo">Kelompok Lepi</div>
+      <ul>
+        <li>
+          <a href="/"><i class="fas fa-home"></i> Dashboard</a>
+        </li>
+        <li>
+          <a href="/kasir"><i class="fas fa-cash-register"></i> Kasir</a>
+        </li>
+        <li>
+          <a href="/pembelian"><i class="fas fa-shopping-cart"></i> Pembelian</a>
+        </li>
+        <li>
+          <a href="/chart"><i class="fas fa-shopping-cart"></i> Chart</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <!-- Informasi Kasir -->
+      <div class="info-container">
+        <h2>Informasi Kasir</h2>
+        <p>
+          Halaman kasir ini digunakan untuk mengelola data barang yang ada di toko. Anda dapat menambahkan barang, menghapus, atau mengupdate data barang yang sudah ada.
+        </p>
+      </div>
+
+      <!-- Form Input Barang -->
+      <div class="form-container">
+        <h3>Tambah Barang</h3>
+        <form id="kasirForm" action="/kasir/add" method="POST">
+          <input type="text" id="nama_barang" name="nama_barang" placeholder="Nama Barang" required />
+          <input type="number" id="harga" name="harga" placeholder="Harga" required />
+          <input type="number" id="jumlah" name="jumlah" placeholder="Jumlah" required />
+          <button type="submit">Tambah</button>
+        </form>
+      </div>
+
+      <!-- Tabel Daftar Barang -->
+      <div class="table-container">
+        <h3>Daftar Barang</h3>
+        <table id="kasirTable">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Barang</th>
+              <th>Harga</th>
+              <th>Jumlah</th>
+              <th>Total Harga</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in data %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ item.nama_barang }}</td>
+              <td>{{ item.harga }}</td>
+              <td>{{ item.jumlah }}</td>
+              <td>{{ item.harga * item.jumlah }}</td>
+              <td>
+                <button class="action-btn update" onclick="openUpdateModal('{{ loop.index - 1 }}', '{{ item.nama_barang }}', '{{ item.harga }}', '{{ item.jumlah }}')">Update</button>
+                <a href="/kasir/delete/{{ loop.index - 1 }}" class="action-btn delete">Delete</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal Update Barang -->
+    <div id="updateModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Update Barang</h2>
+        <form id="updateForm" method="POST">
+          <input type="text" id="update_nama_barang" name="nama_barang" placeholder="Nama Barang" required />
+          <input type="number" id="update_harga" name="harga" placeholder="Harga" required />
+          <input type="number" id="update_jumlah" name="jumlah" placeholder="Jumlah" required />
+          <button type="submit">Simpan</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function openUpdateModal(index, nama_barang, harga, jumlah) {
+        document.getElementById("update_nama_barang").value = nama_barang;
+        document.getElementById("update_harga").value = harga;
+        document.getElementById("update_jumlah").value = jumlah;
+        document.getElementById("updateForm").action = `/kasir/update/${index}`;
+        document.getElementById("updateModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("updateModal").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

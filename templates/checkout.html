@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Kelompok Lepi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-content">
+      <h1>Checkout</h1>
+
+      <!-- Informasi Checkout -->
+      <div class="checkout-container">
+        <h2>Ringkasan Pembelian</h2>
+        <table class="checkout-table">
+          <thead>
+            <tr>
+              <th>Nama Barang</th>
+              <th>Harga Satuan</th>
+              <th>Jumlah</th>
+              <th>Total Harga</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ nama_barang }}</td>
+              <td>Rp {{ harga | int }}</td>
+              <td>{{ jumlah }}</td>
+              <td>Rp {{ total_harga | int }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="total-section">
+          <h3>Total Bayar: Rp {{ total_harga | int }}</h3>
+        </div>
+      </div>
+
+      <!-- Tombol Aksi -->
+      <div class="action-buttons">
+        <form action="/pembelian" method="GET" style="display: inline-block;">
+          <button class="back-btn">
+            <i class="fas fa-arrow-left"></i> Kembali
+          </button>
+        </form>
+        <form action="/checkout/confirm" method="POST" style="display: inline-block;">
+          <button type="submit" class="confirm-btn">
+            <i class="fas fa-check-circle"></i> Konfirmasi Pembelian
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #6b63ff, #32b9c8);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .main-content {
+        background: white;
+        width: 50%;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: #28428b;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+
+      .checkout-container {
+        margin: 20px 0;
+      }
+
+      .checkout-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+
+      .checkout-table th,
+      .checkout-table td {
+        padding: 15px;
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .checkout-table th {
+        background-color: #28428b;
+        color: white;
+        text-transform: uppercase;
+      }
+
+      .checkout-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .checkout-table tr:nth-child(odd) {
+        background-color: #f1f1f1;
+      }
+
+      .checkout-table tr:hover {
+        background-color: #d6f0ff;
+        transition: 0.3s;
+      }
+
+      .total-section {
+        margin-top: 20px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #28428b;
+      }
+
+      .action-buttons button {
+        background: linear-gradient(135deg, #28428b, #6b63ff);
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .action-buttons .back-btn {
+        background: linear-gradient(135deg, #bbbbbb, #dddddd);
+      }
+
+      .action-buttons button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </body>
+</html>
