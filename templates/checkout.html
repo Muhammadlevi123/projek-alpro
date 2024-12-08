@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="main-content">
-      <h1>Checkout</h1>
+      <h1>Nota</h1>
 
       <!-- Informasi Checkout -->
       <div class="checkout-container">
@@ -44,7 +44,7 @@
       <div class="action-buttons">
         <form action="/pembelian" method="GET" style="display: inline-block;">
           <button class="back-btn">
-            <i class="fas fa-arrow-left"></i> Kembali
+            <i class="fas fa-arrow-left"></i> Batalkan Pembelian
           </button>
         </form>
         <form action="/checkout/confirm" method="POST" style="display: inline-block;">
@@ -60,13 +60,13 @@
         font-family: "Poppins", sans-serif;
         background: linear-gradient(135deg, #6b63ff, #32b9c8);
         margin: 0;
-        padding: 0;
+        padding: 20px; /* Beri sedikit padding untuk ruang dari tepi halaman */
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: center; /* Konten dimulai dari atas */
+        align-items: flex-start; /* Pastikan sejajar ke atas */
         min-height: 100vh;
       }
-
+      
       .main-content {
         background: white;
         width: 50%;
@@ -76,6 +76,7 @@
         text-align: center;
         animation: fadeIn 0.8s ease-in-out;
       }
+      
 
       h1 {
         font-size: 2rem;
@@ -146,13 +147,14 @@
       }
 
       .action-buttons .back-btn {
-        background: linear-gradient(135deg, #bbbbbb, #dddddd);
+        background: linear-gradient(135deg, #ff6f61, #ffba08);
       }
 
       .action-buttons button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #bbbbbb, #dddddd);
+        color: #000000; /* Pastikan teks tetap terlihat jelas */
       }
+      
 
       @keyframes fadeIn {
         from {

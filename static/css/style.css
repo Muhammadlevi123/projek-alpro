@@ -44,7 +44,8 @@
     gap: 10px;
   }
 
-  .sidebar ul li a:hover {
+  .sidebar ul li a:hover,
+  .sidebar ul li a:active {
     color: #ffd700;
   }
 

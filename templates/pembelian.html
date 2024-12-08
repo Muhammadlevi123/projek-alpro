@@ -33,85 +33,113 @@
       <div class="form-container">
         <h1>Pembelian Barang</h1>
         <form id="pembelianForm" action="/checkout" method="POST">
+          <div class="form-group">
+            <label for="barang">Pilih Barang</label>
             <select id="barang" name="barang" required>
               <option value="" disabled selected>Pilih Barang</option>
+              <!-- Contoh data dari server -->
               {% for item in data %}
               <option value="{{ item.nama_barang }}" data-harga="{{ item.harga }}">
                 {{ item.nama_barang }} - Rp {{ item.harga }}
               </option>
               {% endfor %}
-            </select>  
-            <input type="number" id="jumlah" name="jumlah" min="1" required />
-            <input type="text" id="total_harga" name="total_harga" readonly style="background-color: #f0f0f0" />  
-            <button type="submit">Checkout</button>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="jumlah">Jumlah</label>
+            <input type="number" id="jumlah" name="jumlah" min="1" placeholder="Masukkan jumlah barang" required />
+          </div>
+          <div class="form-group">
+            <label for="total_harga">Total Harga</label>
+            <input type="text" id="total_harga" name="total_harga" readonly placeholder="Total harga akan muncul di sini" />
+          </div>
+          <button type="submit" class="submit-btn">Checkout</button>
         </form>
       </div>
     </div>
   </div>
-
-  <style>
-    .container {
-      width: 50%;
-      background-color: #28428b;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  
+  <style> 
+  
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
     }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 30px;
+  
+    .form-container h1 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #28428b;
+      text-align: left;
     }
-
-    select,
-    input {
+  
+    .form-group {
+      margin-bottom: 20px;
+    }
+  
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+  
+    .form-group select,
+    .form-group input {
       width: 100%;
       padding: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       border-radius: 5px;
+      font-size: 1rem;
     }
-
-    button {
-      padding: 10px 20px;
-      background-color: #4caf50;
-      color: white;
+  
+    .form-group input[readonly] {
+      border: none;
+      background: transparent;
+      color: #28428b;
+      font-weight: bold;
+      text-align: center;
+    }
+  
+    .form-group input[readonly]:focus {
+      outline: none;
+    }
+  
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: #6b63ff;
+      color: #fff;
       border: none;
       border-radius: 5px;
+      font-size: 1.2rem;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    /* Style untuk button group */
-    .button-group {
-      display: flex;
-      gap: 10px;
-    }
-
-    .button-group button {
-      flex: 1;
+  
+    .submit-btn:hover {
+      background: #574bdc;
     }
   </style>
-
+  
   <script>
-    // Hitung total harga berdasarkan barang yang dipilih dan jumlah
+    // Update total harga berdasarkan barang yang dipilih dan jumlah
     document.getElementById("barang").addEventListener("change", updateTotal);
     document.getElementById("jumlah").addEventListener("input", updateTotal);
-
+  
     function updateTotal() {
-      const selectedBarang = document.getElementById("barang");
-      const harga = parseInt(selectedBarang.options[selectedBarang.selectedIndex].dataset.harga || 0);
+      const barangSelect = document.getElementById("barang");
+      const harga = parseInt(barangSelect.options[barangSelect.selectedIndex]?.dataset?.harga || 0);
       const jumlah = parseInt(document.getElementById("jumlah").value || 0);
-      const totalHarga = harga * jumlah;
-
-      document.getElementById("total_harga").value = totalHarga ? `Rp ${totalHarga}` : "";
+      const total = harga * jumlah;
+  
+      document.getElementById("total_harga").value = total ? `Rp ${total.toLocaleString()}` : "";
     }
   </script>
+
 </body>
 
 </html>
