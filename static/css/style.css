@@ -39,7 +39,8 @@ body {
     gap: 10px;
   }
 
-  .sidebar ul li a:hover {
+  .sidebar ul li a:hover,
+  .sidebar ul li a.active {
     color: #ffd700;
   }
 
@@ -49,7 +50,33 @@ body {
     background: #f4f4f9;
   }
 
-  h2, h3 {
+  .team-list {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    gap: 15px;
+    
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    background: #2E4EA3;
+    padding: 12px 20px;
+    border-radius: 8px;
+    width: 500px;
+    justify-content: justify;
+    color: #fff;
+    font-size: 1.2em;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.team-member i {
+    margin-right: 10px;
+    font-size: 1.5em;
+}
+
+  h1, h2, h3 {
     color: #28428b;
   }
 
