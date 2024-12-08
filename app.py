@@ -128,16 +128,30 @@ def remove_from_chart(item_id):
     return redirect(url_for('chart'))
 
 
-# Route untuk halaman Checkout
-@app.route('/checkout', methods=['GET', 'POST'])
+@app.route('/checkout', methods=['POST'])
 def checkout():
-    if request.method == 'POST':
-        session.pop('chart', None)  # Kosongkan Chart setelah checkout
-        return redirect(url_for('index'))
-    
-    chart_items = session.get('chart', [])
-    total_price = sum(item['harga'] * item['jumlah'] for item in chart_items)
-    return render_template('checkout.html', chart=chart_items, total_price=total_price)
+    nama_barang = request.form['barang']
+    jumlah = int(request.form['jumlah'])
+    data = load_data()
+
+    # Cari barang berdasarkan nama
+    for item in data:
+        if item['nama_barang'] == nama_barang:
+            total_harga = item['harga'] * jumlah
+            return render_template(
+                'checkout.html',
+                nama_barang=nama_barang,
+                harga=item['harga'],
+                jumlah=jumlah,
+                total_harga=total_harga
+            )
+    return redirect('/pembelian')  # Kembali ke pembelian jika barang tidak ditemukan
+
+@app.route('/checkout/confirm', methods=['POST'])
+def confirm_checkout():
+    # Proses konfirmasi pembelian
+    return redirect('/')  # Redirect ke halaman utama setelah pembelian
+
 
 # Route untuk halaman Pembelian Barang
 @app.route('/pembelian', methods=['GET', 'POST'])
