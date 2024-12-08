@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Kelompok Lepi</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="main-content">
+      <h1>Checkout</h1>
+
+      <!-- Informasi Checkout -->
+      <div class="checkout-container">
+        <h2>Ringkasan Pembelian</h2>
+        <table class="checkout-table">
+          <thead>
+            <tr>
+              <th>Nama Barang</th>
+              <th>Harga Satuan</th>
+              <th>Jumlah</th>
+              <th>Total Harga</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ nama_barang }}</td>
+              <td>Rp {{ harga | int }}</td>
+              <td>{{ jumlah }}</td>
+              <td>Rp {{ total_harga | int }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="total-section">
+          <h3>Total Bayar: Rp {{ total_harga | int }}</h3>
+        </div>
+      </div>
+
+      <!-- Tombol Aksi -->
+      <div class="action-buttons">
+        <form action="/" method="GET" style="display: inline-block;">
+          <button class="back-btn">Kembali</button>
+        </form>
+        <form action="/checkout/confirm" method="POST" style="display: inline-block;">
+          <button type="submit" class="confirm-btn">Konfirmasi Pembelian</button>
+        </form>
+      </div>
+    </div>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .main-content {
+        background: white;
+        width: 60%;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .checkout-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .checkout-table th,
+      .checkout-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .checkout-table th {
+        background-color: #28428b;
+        color: white;
+      }
+
+      .total-section {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .action-buttons button {
+        background-color: #28428b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 10px;
+      }
+
+      .action-buttons .back-btn {
+        background-color: #bbb;
+      }
+
+      .action-buttons button:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </body>
+</html>

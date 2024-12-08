@@ -1,19 +1,25 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
+import os
 
-app = Flask(__name__)
+app = Flask(_name_)
+
+# Nama file untuk menyimpan data kasir
+DATA_FILE = 'kasir_data.json'
 
 # Fungsi untuk membaca file data kasir
 def load_data():
+    if not os.path.exists(DATA_FILE):
+        return []  # Kembalikan list kosong jika file belum ada
     try:
-        with open('kasir_data.json', 'r') as f:
+        with open(DATA_FILE, 'r') as f:
             return json.load(f)
-    except FileNotFoundError:
-        return []
+    except json.JSONDecodeError:
+        return []  # Kembalikan list kosong jika file tidak dapat didecode
 
 # Fungsi untuk menyimpan data kasir ke file
 def save_data(data):
-    with open('kasir_data.json', 'w') as f:
+    with open(DATA_FILE, 'w') as f:
         json.dump(data, f, indent=4)
 
 # Route untuk halaman utama
@@ -26,16 +32,6 @@ def index():
 def kasir():
     data = load_data()
     return render_template('kasir.html', data=data)
-
-# Fungsi untuk membaca data dari kasir_data.json
-def read_data():
-    try:
-        with open('kasir_data.json', 'r') as file:
-            data = json.load(file)
-        return data
-    except Exception as e:
-        print(f"Error reading file: {e}")
-        return []
 
 # Route untuk menambah data kasir
 @app.route('/kasir/add', methods=['POST'])
@@ -64,6 +60,7 @@ def delete_item(item_id):
         save_data(data)
     return redirect(url_for('kasir'))
 
+# Route untuk memperbarui data kasir
 @app.route('/kasir/update/<int:item_id>', methods=['POST'])
 def update_item(item_id):
     data = load_data()
@@ -75,5 +72,55 @@ def update_item(item_id):
         save_data(data)
     return redirect(url_for('kasir'))
 
-if __name__ == '__main__':
+
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    nama_barang = request.form['barang']
+    jumlah = int(request.form['jumlah'])
+    data = load_data()
+
+    # Cari barang berdasarkan nama
+    for item in data:
+        if item['nama_barang'] == nama_barang:
+            total_harga = item['harga'] * jumlah
+            return render_template(
+                'checkout.html',
+                nama_barang=nama_barang,
+                harga=item['harga'],
+                jumlah=jumlah,
+                total_harga=total_harga
+            )
+    return redirect('/pembelian')  # Kembali ke pembelian jika barang tidak ditemukan
+
+@app.route('/checkout/confirm', methods=['POST'])
+def confirm_checkout():
+    # Proses konfirmasi pembelian
+    return redirect('/')  # Redirect ke halaman utama setelah pembelian
+
+
+# Route untuk halaman Pembelian Barang
+@app.route('/pembelian', methods=['GET', 'POST'])
+def pembelian():
+    data = load_data()
+    if request.method == 'POST':
+        nama_barang = request.form['barang']
+        jumlah = int(request.form['jumlah'])
+
+        # Cari barang berdasarkan nama
+        for item in data:
+            if item['nama_barang'] == nama_barang:
+                total_harga = item['harga'] * jumlah
+                return render_template(
+                    'pembelian.html',
+                    data=data,
+                    success=True,
+                    nama_barang=nama_barang,
+                    jumlah=jumlah,
+                    total_harga=total_harga
+                )
+        return render_template('pembelian.html', data=data, error="Barang tidak ditemukan.")
+
+    return render_template('pembelian.html', data=data)
+
+if _name_ == '_main_':
     app.run(debug=True)
