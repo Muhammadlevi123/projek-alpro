@@ -21,9 +21,6 @@
         <li>
           <a href="/pembelian"><i class="fas fa-shopping-cart"></i> Pembelian</a>
         </li>
-        <li>
-          <a href="/chart"><i class="fas fa-shopping-cart"></i> Chart</a>
-        </li>
       </ul>
     </div>
 
@@ -93,6 +90,117 @@
         </form>
       </div>
     </div>
+
+    <style>
+      /* Form Styles */
+  .form-container {
+    margin: 20px 0;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-container form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .form-container form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .form-container form button {
+    background: #6b63ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* Table Styles */
+  .table-container {
+    margin-top: 20px;
+  }
+
+  #kasirTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #kasirTable th, #kasirTable td {
+    padding: 10px;
+    text-align: center;
+  }
+
+  #kasirTable th {
+    background: #28428b;
+    color: white;
+  }
+
+  #kasirTable tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+  }
+
+  #kasirTable tbody tr:nth-child(even) {
+    background: #ececec;
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+  }
+
+  .close-btn {
+    float: right;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #6b63ff;
+  }
+
+  .close-btn:hover {
+    color: #ff6f61;
+  }
+
+  /* Button Styles */
+  .action-btn {
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .action-btn.update {
+    background: #6b63ff;
+    color: white;
+  }
+
+  .action-btn.delete {
+    background: #ff6f61;
+    color: white;
+  }
+    </style>
 
     <script>
       function openUpdateModal(index, nama_barang, harga, jumlah) {

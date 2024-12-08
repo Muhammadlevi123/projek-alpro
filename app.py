@@ -1,9 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for
 import json
 import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Dibutuhkan untuk menggunakan sesi
 
 # Nama file untuk menyimpan data kasir
 DATA_FILE = 'kasir_data.json'
@@ -72,60 +71,6 @@ def update_item(item_id):
         data[item_id]['jumlah'] = int(request.form['jumlah'])
         save_data(data)
     return redirect(url_for('kasir'))
-
-@app.route('/chart')
-def chart():
-    # Ambil barang di chart dari session
-    chart_items = session.get('chart', [])
-    
-    # Hitung total harga
-    total_price = sum(item['harga'] * item['jumlah'] for item in chart_items)
-    
-    # Render halaman chart dengan data
-    return render_template('chart.html', chart=chart_items, total_price=total_price)
-
-@app.route('/chart/add/<int:item_id>', methods=['POST'])
-def add_to_chart(item_id):
-    # Muat data barang dari file
-    data = load_data()
-    
-    # Validasi apakah item_id valid
-    if 0 <= item_id < len(data):
-        # Ambil barang berdasarkan ID
-        item = data[item_id]
-        
-        # Ambil chart dari session, atau buat list baru jika belum ada
-        chart = session.get('chart', [])
-        
-        # Cek apakah barang sudah ada di chart
-        for chart_item in chart:
-            if chart_item['nama_barang'] == item['nama_barang']:
-                # Tambahkan jumlah jika barang sudah ada
-                chart_item['jumlah'] += 1
-                break
-        else:
-            # Tambahkan barang ke chart jika belum ada
-            chart.append({'nama_barang': item['nama_barang'], 'harga': item['harga'], 'jumlah': 1})
-        
-        # Simpan kembali chart ke session
-        session['chart'] = chart
-
-    return redirect(url_for('chart'))
-
-@app.route('/chart/delete/<int:item_id>', methods=['GET'])
-def remove_from_chart(item_id):
-    # Ambil chart dari session
-    chart = session.get('chart', [])
-    
-    # Validasi apakah item_id valid
-    if 0 <= item_id < len(chart):
-        # Hapus barang berdasarkan ID
-        chart.pop(item_id)
-        
-        # Simpan kembali chart ke session
-        session['chart'] = chart
-
-    return redirect(url_for('chart'))
 
 
 @app.route('/checkout', methods=['POST'])

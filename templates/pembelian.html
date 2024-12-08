@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pembelian Barang</title>
   <link rel="stylesheet" href="/static/css/style.css" />
   <script src="/static/js/script.js" defer></script>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
+
 <body>
   <div class="sidebar">
     <div class="logo">Kelompok Lepi</div>
@@ -28,65 +24,32 @@
       <li>
         <a href="/pembelian" class="active"><i class="fas fa-shopping-cart"></i> Pembelian</a>
       </li>
-      <li>
-          <a href="/chart"><i class="fas fa-shopping-cart"></i> Chart</a>
-        </li>
     </ul>
   </div>
 
   <div class="main-content">
-    <div class="container">
-      <h1>Pembelian Barang</h1>
-
+    <div class="table-container">
       <!-- Form Pembelian -->
-      <form id="pembelianForm" action="/checkout" method="POST">
-        <div>
-          <label for="barang" style="padding: 10px">Pilih Barang</label>
-          <select id="barang" name="barang" required>
-            <option value="" disabled selected>Pilih Barang</option>
-            {% for item in data %}
-            <option value="{{ item.nama_barang }}" data-harga="{{ item.harga }}">
-              {{ item.nama_barang }} - Rp {{ item.harga }}
-            </option>
-            {% endfor %}
-          </select>
-        </div>
-
-        <div>
-          <label for="jumlah" style="padding: 10px">Jumlah</label>
-          <input type="number" id="jumlah" name="jumlah" min="1" required />
-        </div>
-
-        <div>
-          <label for="total_harga" style="padding: 10px">Total Harga</label>
-          <input
-            type="text"
-            id="total_harga"
-            name="total_harga"
-            readonly
-            style="background-color: #f0f0f0"
-          />
-        </div>
-
-        <button type="submit">Checkout</button>
-      </form>
+      <div class="form-container">
+        <h1>Pembelian Barang</h1>
+        <form id="pembelianForm" action="/checkout" method="POST">
+            <select id="barang" name="barang" required>
+              <option value="" disabled selected>Pilih Barang</option>
+              {% for item in data %}
+              <option value="{{ item.nama_barang }}" data-harga="{{ item.harga }}">
+                {{ item.nama_barang }} - Rp {{ item.harga }}
+              </option>
+              {% endfor %}
+            </select>  
+            <input type="number" id="jumlah" name="jumlah" min="1" required />
+            <input type="text" id="total_harga" name="total_harga" readonly style="background-color: #f0f0f0" />  
+            <button type="submit">Checkout</button>
+        </form>
+      </div>
     </div>
   </div>
 
   <style>
-    /* Main content */
-    .main-content {
-      margin-left: 150px; /* Adjusted to accommodate sidebar */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      background: linear-gradient(135deg, #1a1a2e, #162447);
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
     .container {
       width: 50%;
       background-color: #28428b;
@@ -123,6 +86,16 @@
     button:hover {
       background-color: #45a049;
     }
+
+    /* Style untuk button group */
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .button-group button {
+      flex: 1;
+    }
   </style>
 
   <script>
@@ -136,8 +109,9 @@
       const jumlah = parseInt(document.getElementById("jumlah").value || 0);
       const totalHarga = harga * jumlah;
 
-      document.getElementById("total_harga").value = totalHarga ? Rp ${totalHarga} : "";
+      document.getElementById("total_harga").value = totalHarga ? `Rp ${totalHarga}` : "";
     }
   </script>
 </body>
+
 </html>
