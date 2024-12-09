@@ -6,7 +6,32 @@
     },
     {
         "nama_barang": "lemari",
-        "harga": 10000,
+        "harga": 1000000,
         "jumlah": 2
+    },
+    {
+        "nama_barang": "laptop",
+        "harga": 11000000,
+        "jumlah": 10
+    },
+    {
+        "nama_barang": "mouse",
+        "harga": 150000,
+        "jumlah": 90
+    },
+    {
+        "nama_barang": "keyboard",
+        "harga": 450000,
+        "jumlah": 90
+    },
+    {
+        "nama_barang": "monitor",
+        "harga": 4500000,
+        "jumlah": 40
+    },
+    {
+        "nama_barang": "USB type C",
+        "harga": 15000,
+        "jumlah": 150
     }
 ]

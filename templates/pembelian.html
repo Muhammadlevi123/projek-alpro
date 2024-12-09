@@ -37,7 +37,7 @@
             <label for="barang">Pilih Barang</label>
             <select id="barang" name="barang" required>
               <option value="" disabled selected>Pilih Barang</option>
-              <!-- Contoh data dari server -->
+              
               {% for item in data %}
               <option value="{{ item.nama_barang }}" data-harga="{{ item.harga }}">
                 {{ item.nama_barang }} - Rp {{ item.harga }}

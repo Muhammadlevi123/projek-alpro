@@ -57,10 +57,10 @@ def delete_item(item_id):
     data = load_data()
     if 0 <= item_id < len(data):
         data.pop(item_id)
-        save_data(data)
+        save_data(data) 
     return redirect(url_for('kasir'))
 
-# Route untuk memperbarui data kasir
+# Route untuk mengubah data kasir
 @app.route('/kasir/update/<int:item_id>', methods=['POST'])
 def update_item(item_id):
     data = load_data()
